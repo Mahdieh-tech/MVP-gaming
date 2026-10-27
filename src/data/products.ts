@@ -1,0 +1,85 @@
+import type { Product } from "@/types/product";
+
+export const products: Product[] = [
+  {
+    id: "1",
+    slug: "apex-75-keyboard",
+    name: "Apex 75 Mechanical Keyboard",
+    brand: "Apex",
+    category: "keyboard",
+    description: "75% layout with hot-swappable switches.",
+    wireless: true,
+    specs: { layout: "75%", hotSwappable: true },
+    featured: true,
+    variants: [
+      {
+        id: "1-red",
+        sku: "APX75-RED",
+        label: "Red switches",
+        priceCents: 8900,
+        stock: 12,
+      },
+      {
+        id: "1-brown",
+        sku: "APX75-BRN",
+        label: "Brown switches",
+        priceCents: 8900,
+        stock: 0,
+      },
+    ],
+  },
+  {
+    id: "2",
+    slug: "asus-100-mouse",
+    name: "asus 100 gaming mouse",
+    brand: "asus",
+    category: "mouse",
+    description: "100% touch with fast navigation.",
+    wireless: true,
+    specs: { layout: "100%", fastNavigation: true },
+    featured: true,
+    variants: [
+      {
+        id: "2-black",
+        sku: "ASUS100-BLACK",
+        label: "Black",
+        priceCents: 6500,
+        stock: 4,
+      },
+      {
+        id: "2-white",
+        sku: "ASUS100-WHITE",
+        label: "White",
+        priceCents: 6500,
+        stock: 2,
+      },
+    ],
+  },
+  {
+    id: "3",
+    slug: "xiaomi-headset",
+    name: "xiaomi headset",
+    brand: "xiaomi",
+    category: "headset",
+    description: "professional headset.",
+    wireless: false,
+    specs: { layout: "75%", hotSwappable: true },
+    featured: true,
+    variants: [
+      {
+        id: "3-pink",
+        sku: "XIAOMI-PINK",
+        label: "Pink",
+        priceCents: 2100,
+        stock: 8,
+      },
+      {
+        id: "3-blue",
+        sku: "XIAOMI-BLUE",
+        label: "Blur",
+        priceCents: 2100,
+        stock: 1,
+      },
+    ],
+  },
+];
