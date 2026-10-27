@@ -1,16 +1,20 @@
-import ProductCard from "@/components/products/ProductCard";
-import { getProducts } from "@/lib/queries/products";
+import ProductGrid from "@/components/products/ProductGrid";
+import { getFeaturedProducts } from "@/lib/queries/products";
 
 export default async function Home() {
-  const products = await getProducts();
+  const featured = await getFeaturedProducts();
 
   return (
-    <main className="mx-auto max-w-7xl p-8">
-      <h1 className="text-4xl font-bold">MVP Gaming</h1>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <main className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
+      <h1 className="text-4xl font-bold tracking-tight">
+        Gear for players who play to win
+      </h1>
+      <p className="mt-3 max-w-xl text-muted">
+        Keyboards, mice, headsets and mousepads.
+      </p>
+      <h2 className="mt-12 text-2xl font-semibold">Featured</h2>
+      <div className="mt-6">
+        <ProductGrid products={featured} />
       </div>
     </main>
   );
