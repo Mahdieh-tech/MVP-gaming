@@ -1,4 +1,5 @@
-import { createClient } from "@/lib/supabase/server";
+import { cacheLife } from "next/cache";
+import { createPublicClient } from "@/lib/supabase/public";
 import type {
   Category,
   Product,
@@ -61,7 +62,10 @@ function toProduct(row: ProductRow): Product {
 }
 
 export async function getProducts(): Promise<Product[]> {
-  const supabase = await createClient();
+  "use cache";
+  cacheLife("default");
+
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select(PRODUCT_COLUMNS)
@@ -72,20 +76,25 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  const supabase = await createClient();
+  "use cache";
+  cacheLife("default");
+
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select(PRODUCT_COLUMNS)
     .eq("featured", true)
     .order("created_at", { ascending: false });
 
-  if (error)
-    throw new Error(`Failed to load featured products: ${error.message}`);
+  if (error) throw new Error(`Failed to load featured products: ${error.message}`);
   return ((data ?? []) as ProductRow[]).map(toProduct);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const supabase = await createClient();
+  "use cache";
+  cacheLife("default");
+
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select(PRODUCT_COLUMNS)
