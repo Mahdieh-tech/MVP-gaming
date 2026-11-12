@@ -1,4 +1,5 @@
-export type Category = "keyboard" | "mouse" | "headset" | "mousepad";
+export const CATEGORIES = ["keyboard", "mouse", "headset", "mousepad"] as const;
+export type Category = (typeof CATEGORIES)[number];
 
 export type SpecValue = string | number | boolean;
 
