@@ -84,3 +84,7 @@ export function toSearchParams(filters: ProductFilters): string {
 
   return params.toString();
 }
+export function buildProductsUrl(filters: ProductFilters): string {
+  const query = toSearchParams(filters);
+  return query ? `/products?${query}` : "/products";
+}

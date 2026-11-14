@@ -73,3 +73,15 @@ describe("toSearchParams", () => {
     expect(parseFilters(params)).toEqual(filters);
   });
 });
+
+describe("buildProductsUrl", () => {
+  it("returns the bare path for default filters", () => {
+    expect(buildProductsUrl(parseFilters({}))).toBe("/products");
+  });
+
+  it("includes only non-default values", () => {
+    expect(buildProductsUrl(parseFilters({ q: "apex", page: "2" }))).toBe(
+      "/products?q=apex&page=2",
+    );
+  });
+});
