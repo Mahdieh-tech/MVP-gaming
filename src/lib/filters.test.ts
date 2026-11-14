@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseFilters, toSearchParams } from "@/lib/filters";
+import { buildProductsUrl, parseFilters, toSearchParams } from "@/lib/filters";
 
 describe("parseFilters", () => {
   it("returns defaults for empty params", () => {
