@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-const links = [
-  { href: "/products", label: "Products" },
-  { href: "/cart", label: "Cart" },
-  { href: "/login", label: "Log in" },
-];
+import CartLink from "@/components/layout/CartLink";
 
 export default function Header() {
   return (
@@ -15,13 +10,19 @@ export default function Header() {
         </Link>
         <nav aria-label="Main">
           <ul className="flex items-center gap-6 text-sm text-muted">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-foreground">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href="/products" className="hover:text-foreground">
+                Products
+              </Link>
+            </li>
+            <li>
+              <CartLink />
+            </li>
+            <li>
+              <Link href="/login" className="hover:text-foreground">
+                Log in
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
