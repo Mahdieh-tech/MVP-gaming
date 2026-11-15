@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProductBySlug } from "@/lib/queries/products";
-import { formatPrice } from "@/lib/utils";
-import StockBadge from "@/components/products/StockBadge";
+import AddToCart from "@/components/cart/AddToCart";
 import SpecsTable from "@/components/products/SpecsTable";
+import { getProductBySlug } from "@/lib/queries/products";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -35,23 +34,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </h1>
           <p className="mt-4 text-muted">{product.description}</p>
 
-          <h2 className="mt-8 text-lg font-semibold">Options</h2>
-          <ul className="mt-3 space-y-2">
-            {product.variants.map((variant) => (
-              <li
-                key={variant.id}
-                className="flex items-center justify-between rounded-lg border border-border bg-surface px-4 py-3"
-              >
-                <span>{variant.label}</span>
-                <span className="flex items-center gap-3">
-                  <StockBadge stock={variant.stock} />
-                  <span className="font-medium">
-                    {formatPrice(variant.priceCents)}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8">
+            <AddToCart
+              product={{
+                slug: product.slug,
+                name: product.name,
+                imageUrl: product.imageUrl,
+                variants: product.variants,
+              }}
+            />
+          </div>
 
           <h2 className="mt-8 text-lg font-semibold">Specifications</h2>
           <div className="mt-3">
